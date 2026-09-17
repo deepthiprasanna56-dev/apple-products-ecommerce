@@ -1,8 +1,30 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Play, Sparkles, ChevronRight, Cpu, ShieldCheck, Camera, Layers, Zap } from 'lucide-react'
 
 export function HeroSection({ heroProduct, onExplore, onBuy, onWatchFilm }) {
   const [activeTab, setActiveTab] = useState(0)
+  const [tilt, setTilt] = useState({ x: 0, y: 0, glareX: 50, glareY: 50 })
+  const [isHovered, setIsHovered] = useState(false)
+  const stageRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    if (!stageRef.current) return
+    const rect = stageRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setTilt({
+      x: +(x * 24).toFixed(2),
+      y: +(-y * 24).toFixed(2),
+      glareX: +((x + 0.5) * 100).toFixed(1),
+      glareY: +((y + 0.5) * 100).toFixed(1)
+    })
+  }
+
+  const handleMouseEnter = () => setIsHovered(true)
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    setTilt({ x: 0, y: 0, glareX: 50, glareY: 50 })
+  }
 
   const heroSlides = [
     {
@@ -134,32 +156,85 @@ export function HeroSection({ heroProduct, onExplore, onBuy, onWatchFilm }) {
           </div>
         </div>
 
-        {/* Hero Visual Studio Stage - Expanded width to remove side gaps */}
+        {/* Hero Visual Studio Stage - 3D Interactive Perspective, Floating & Glowing */}
         <div className="mt-8 sm:mt-10 w-full max-w-5xl lg:max-w-6xl mx-auto">
-          <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-b from-[#18181b] via-[#121214] to-[#0a0a0c] shadow-2xl shadow-black/80">
-            
+          <div
+            ref={stageRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="relative rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#18181b] via-[#121214] to-[#0a0a0c] shadow-2xl shadow-black/90 transition-all duration-300 group cursor-crosshair"
+            style={{ perspective: '1200px' }}
+          >
+            {/* Apple Intelligence Luminous Glowing Aura */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[500px] h-60 sm:h-[350px] bg-gradient-to-tr from-[#0071e3]/30 via-[#a855f7]/35 to-[#06b6d4]/30 rounded-full blur-[80px] pointer-events-none animate-glow-pulse" />
+
+            {/* Specular Interactive Cursor Glare Highlight */}
+            <div
+              className="absolute inset-0 pointer-events-none z-10 mix-blend-overlay transition-opacity duration-300"
+              style={{
+                background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.22) 0%, transparent 60%)`,
+                opacity: isHovered ? 1 : 0
+              }}
+            />
+
             {/* Color Tag Badge */}
-            <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs text-[#a1a1a6]">
-              Finish: <strong className="text-white">{current.colorName}</strong>
+            <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-xs text-[#a1a1a6] shadow-lg flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#0071e3] shadow-[0_0_8px_#0071e3] animate-pulse" />
+              <span>Finish: <strong className="text-white font-medium">{current.colorName}</strong></span>
             </div>
 
-            {/* Clean Centered Image Stage */}
-            <div className="h-60 sm:h-80 w-full flex items-center justify-center p-4 relative">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none" />
-              <img
-                src={current.image}
-                alt={current.title}
-                className="max-h-full max-w-full object-contain transition-all duration-700 hover:scale-105 drop-shadow-2xl"
-              />
+            {/* 3D Interactive Interactive Floating Stage */}
+            <div className="h-64 sm:h-96 w-full flex flex-col items-center justify-center p-6 relative preserve-3d">
+              {/* Floating Device Container with 3D Tilt */}
+              <div
+                className="relative flex items-center justify-center preserve-3d"
+                style={{
+                  transform: `perspective(1200px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
+                  transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                }}
+              >
+                {/* Floating Zero-Gravity Device */}
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className="animate-float-3d max-h-52 sm:max-h-72 max-w-full object-contain filter drop-shadow-[0_25px_40px_rgba(0,113,227,0.35)] select-none pointer-events-none"
+                />
+
+                {/* Floating 3D Badge 1: Apple Intelligence (Parallax pop-out) */}
+                <div
+                  className="hidden md:flex absolute -left-12 top-10 items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 text-[11px] text-white shadow-xl pointer-events-none transition-transform duration-300"
+                  style={{
+                    transform: `translateZ(40px) translateX(${tilt.x * 0.4}px) translateY(${tilt.y * 0.4}px)`
+                  }}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#e5a97d] animate-pulse" />
+                  <span>Titanium &middot; A18 Pro</span>
+                </div>
+
+                {/* Floating 3D Badge 2: 3D Spatial Audio / Display */}
+                <div
+                  className="hidden md:flex absolute -right-12 bottom-10 items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 text-[11px] text-white shadow-xl pointer-events-none transition-transform duration-300"
+                  style={{
+                    transform: `translateZ(40px) translateX(${-tilt.x * 0.4}px) translateY(${-tilt.y * 0.4}px)`
+                  }}
+                >
+                  <Cpu className="w-3.5 h-3.5 text-[#2997ff]" />
+                  <span>Apple Silicon Architecture</span>
+                </div>
+              </div>
+
+              {/* Dynamic Ground Contact Shadow (Breathes inversely to floating device) */}
+              <div className="animate-float-shadow w-44 sm:w-72 h-3.5 sm:h-5 bg-black/90 rounded-[100%] blur-md mt-4 pointer-events-none" />
             </div>
 
             {/* Highlights Grid Aligned at Bottom */}
-            <div className="border-t border-white/10 bg-black/40 backdrop-blur-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="border-t border-white/10 bg-black/50 backdrop-blur-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-3 gap-3 relative z-20">
               {current.highlights.map((item, idx) => {
                 const Icon = item.icon
                 return (
-                  <div key={idx} className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#2997ff] shrink-0">
+                  <div key={idx} className="flex items-center gap-2.5 group/item hover:bg-white/5 p-1.5 rounded-xl transition-colors">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#2997ff] shrink-0 group-hover/item:border-[#2997ff]/40 group-hover/item:shadow-[0_0_12px_rgba(41,151,255,0.3)] transition-all">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>

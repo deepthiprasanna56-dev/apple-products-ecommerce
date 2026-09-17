@@ -1,10 +1,8 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Navbar } from './components/layout/Navbar'
 import { StoreRibbon } from './components/layout/StoreRibbon'
-import { HeroSection } from './components/home/HeroSection'
-import { BentoGrid } from './components/home/BentoGrid'
-import { PerksStrip } from './components/home/PerksStrip'
-import { CategoryShowcaseSection } from './components/home/CategoryShowcaseSection'
+import { HomePage } from './components/home/HomePage'
+import { StorePage } from './components/products/StorePage'
 import { CategoryHero } from './components/products/CategoryHero'
 import { FilterBar } from './components/products/FilterBar'
 import { ProductCard } from './components/products/ProductCard'
@@ -15,13 +13,18 @@ import { CheckoutModal } from './components/cart/CheckoutModal'
 import { SearchModal } from './components/common/SearchModal'
 import { WishlistDrawer } from './components/common/WishlistDrawer'
 import { VideoModal } from './components/common/VideoModal'
+import { IntroSplash } from './components/common/IntroSplash'
 import { ToastContainer } from './components/common/Toast'
 import { Footer } from './components/layout/Footer'
 import { PRODUCTS } from './data/products'
 
 export default function App() {
+  // Cinematic Intro Splash State
+  const [showIntro, setShowIntro] = useState(true)
+
   // Navigation & Catalog Filters
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeCategory, setActiveCategory] = useState('home')
+  const [storeCategoryFilter, setStoreCategoryFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('featured')
   const [maxPrice, setMaxPrice] = useState(2000)
@@ -213,7 +216,7 @@ export default function App() {
   // Filtered and Sorted Catalog for Dedicated Category Page
   const categoryProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      const categoryMatch = activeCategory === 'all' || product.category === activeCategory
+      const categoryMatch = product.category === activeCategory
       const searchMatch =
         searchQuery.trim() === '' ||
         `${product.name} ${product.category} ${product.tagline} ${product.specs.chip}`
@@ -229,6 +232,25 @@ export default function App() {
     })
   }, [activeCategory, searchQuery, maxPrice, sortBy])
 
+  // Catalog for Dedicated Store Page
+  const storeProducts = useMemo(() => {
+    return PRODUCTS.filter((product) => {
+      const categoryMatch = storeCategoryFilter === 'all' || product.category === storeCategoryFilter
+      const searchMatch =
+        searchQuery.trim() === '' ||
+        `${product.name} ${product.category} ${product.tagline} ${product.specs.chip}`
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      const priceMatch = product.price <= maxPrice
+      return categoryMatch && searchMatch && priceMatch
+    }).sort((a, b) => {
+      if (sortBy === 'price-low') return a.price - b.price
+      if (sortBy === 'price-high') return b.price - a.price
+      if (sortBy === 'rating') return b.rating - a.rating
+      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
+    })
+  }, [storeCategoryFilter, searchQuery, maxPrice, sortBy])
+
   // Products grouped by category for the Home View
   const iphoneProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'iphone'), [])
   const macProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'mac'), [])
@@ -239,15 +261,35 @@ export default function App() {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0)
   const heroProduct = PRODUCTS.find((p) => p.id === 'iphone-16-pro') || PRODUCTS[0]
 
+  const handleSelectCategory = (cat) => {
+    setActiveCategory(cat)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleQuickView = (productOrId) => {
+    if (typeof productOrId === 'string') {
+      const found = PRODUCTS.find((p) => p.id === productOrId)
+      if (found) setSelectedProduct(found)
+    } else if (productOrId) {
+      setSelectedProduct(productOrId)
+    }
+  }
+
+  const handleBuyNowFromTarget = (productOrId) => {
+    const target = typeof productOrId === 'string'
+      ? PRODUCTS.find((p) => p.id === productOrId)
+      : productOrId
+    if (target) {
+      handleBuyNow(target)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#000000] text-[#f5f5f7] flex flex-col selection:bg-[#0071e3] selection:text-white">
       {/* Apple Frosted Navbar */}
       <Navbar
         activeCategory={activeCategory}
-        onSelectCategory={(cat) => {
-          setActiveCategory(cat)
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }}
+        onSelectCategory={handleSelectCategory}
         cartCount={cartCount}
         wishlistCount={wishlist.length}
         onOpenCart={() => setIsCartOpen(true)}
@@ -259,148 +301,61 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 pt-12">
-        {/* Apple Store Category Ribbon */}
+        {/* Apple Store 3D Floating Glass Dock */}
         <StoreRibbon
           activeCategory={activeCategory}
-          onSelectCategory={(cat) => {
-            setActiveCategory(cat)
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}
+          onSelectCategory={handleSelectCategory}
         />
 
-        {/* VIEW MODE 1: ALL PRODUCTS (HOME STOREFRONT) */}
-        {activeCategory === 'all' && (
-          <div>
-            {/* Cinematic Hero Section */}
-            <HeroSection
-              heroProduct={heroProduct}
-              onExplore={() => {
-                const el = document.getElementById('iphone-showcase')
-                if (el) el.scrollIntoView({ behavior: 'smooth' })
-              }}
-              onBuy={handleBuyNow}
-              onWatchFilm={() => setIsVideoOpen(true)}
-            />
-
-            {/* Apple Store Perks Strip */}
-            <PerksStrip />
-
-            {/* Bento Grid Hardware Innovations */}
-            <BentoGrid
-              onSelectProduct={(productId) => {
-                const found = PRODUCTS.find((p) => p.id === productId)
-                if (found) setSelectedProduct(found)
-              }}
-            />
-
-            {/* DEDICATED CATEGORY SHOWCASE SECTIONS */}
-            <div id="iphone-showcase">
-              <CategoryShowcaseSection
-                title="iPhone"
-                subtitle="Explore iPhone 16 Pro, iPhone 16, and iPhone 15. Powered by Apple Intelligence."
-                categoryId="iphone"
-                products={iphoneProducts}
-                onExploreCategory={(cat) => {
-                  setActiveCategory(cat)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onAddToCart={handleAddToCart}
-                compareList={compareList}
-                onToggleCompare={handleToggleCompare}
-              />
-            </div>
-
-            <div id="mac-showcase">
-              <CategoryShowcaseSection
-                title="Mac"
-                subtitle="MacBook Pro, MacBook Air, and Mac mini. Supercharged with M4 and M3 Apple Silicon."
-                categoryId="mac"
-                products={macProducts}
-                onExploreCategory={(cat) => {
-                  setActiveCategory(cat)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onAddToCart={handleAddToCart}
-                compareList={compareList}
-                onToggleCompare={handleToggleCompare}
-              />
-            </div>
-
-            <div id="ipad-showcase">
-              <CategoryShowcaseSection
-                title="iPad"
-                subtitle="iPad Pro with breakthrough Tandem OLED and iPad Air. Versatile performance for creators."
-                categoryId="ipad"
-                products={ipadProducts}
-                onExploreCategory={(cat) => {
-                  setActiveCategory(cat)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onAddToCart={handleAddToCart}
-                compareList={compareList}
-                onToggleCompare={handleToggleCompare}
-              />
-            </div>
-
-            <div id="watch-showcase">
-              <CategoryShowcaseSection
-                title="Apple Watch"
-                subtitle="Apple Watch Ultra 2 and Series 10. Advanced wellness, activity tracking, and emergency features."
-                categoryId="watch"
-                products={watchProducts}
-                onExploreCategory={(cat) => {
-                  setActiveCategory(cat)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onAddToCart={handleAddToCart}
-                compareList={compareList}
-                onToggleCompare={handleToggleCompare}
-              />
-            </div>
-
-            <div id="airpods-showcase">
-              <CategoryShowcaseSection
-                title="AirPods"
-                subtitle="AirPods Pro 2, AirPods Max, and AirPods 4. Industry-leading Active Noise Cancellation."
-                categoryId="airpods"
-                products={airpodsProducts}
-                onExploreCategory={(cat) => {
-                  setActiveCategory(cat)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                wishlist={wishlist}
-                onToggleWishlist={handleToggleWishlist}
-                onQuickView={(p) => setSelectedProduct(p)}
-                onAddToCart={handleAddToCart}
-                compareList={compareList}
-                onToggleCompare={handleToggleCompare}
-              />
-            </div>
-          </div>
+        {/* VIEW MODE 1: HOME (CINEMATIC BRAND HUB) */}
+        {(activeCategory === 'home' || activeCategory === 'all') && (
+          <HomePage
+            heroProduct={heroProduct}
+            onBuyNow={handleBuyNowFromTarget}
+            onWatchFilm={() => setIsVideoOpen(true)}
+            onQuickView={handleQuickView}
+            onExploreCategory={handleSelectCategory}
+            iphoneProducts={iphoneProducts}
+            macProducts={macProducts}
+            ipadProducts={ipadProducts}
+            watchProducts={watchProducts}
+            airpodsProducts={airpodsProducts}
+            wishlist={wishlist}
+            onToggleWishlist={handleToggleWishlist}
+            onAddToCart={handleAddToCart}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
+          />
         )}
 
-        {/* VIEW MODE 2: DEDICATED CATEGORY VIEW (IPHONE / MAC / IPAD / WATCH / AIRPODS) */}
-        {activeCategory !== 'all' && (
+        {/* VIEW MODE 2: STORE (SHOPPING HUB & CATALOG) */}
+        {activeCategory === 'store' && (
+          <StorePage
+            categoryProducts={storeProducts}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            maxPrice={maxPrice}
+            onMaxPriceChange={setMaxPrice}
+            selectedCategoryFilter={storeCategoryFilter}
+            onCategoryFilterChange={setStoreCategoryFilter}
+            wishlist={wishlist}
+            onToggleWishlist={handleToggleWishlist}
+            onQuickView={handleQuickView}
+            onAddToCart={handleAddToCart}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
+          />
+        )}
+
+        {/* VIEW MODE 3: DEDICATED CATEGORY VIEW (IPHONE / MAC / IPAD / WATCH / AIRPODS) */}
+        {activeCategory !== 'home' && activeCategory !== 'store' && activeCategory !== 'all' && (
           <div className="animate-in fade-in duration-300">
             {/* Category Banner Hero */}
             <CategoryHero
               categoryId={activeCategory}
-              onBackToStore={() => {
-                setActiveCategory('all')
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
+              onBackToStore={() => handleSelectCategory('home')}
               onOpenCompare={() => setIsCompareOpen(true)}
             />
 
@@ -524,6 +479,9 @@ export default function App() {
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
       />
+
+      {/* Cinematic 3D Apple Intelligence Intro Splash */}
+      {showIntro && <IntroSplash onComplete={() => setShowIntro(false)} />}
 
       {/* Toast Notifications Container */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />

@@ -1,5 +1,6 @@
 export const CATEGORIES = [
-  { id: 'all', name: 'All Products', icon: 'Sparkles' },
+  { id: 'home', name: 'Home', icon: 'Home' },
+  { id: 'store', name: 'Store', icon: 'Sparkles' },
   { id: 'iphone', name: 'iPhone', icon: 'Smartphone' },
   { id: 'mac', name: 'Mac', icon: 'Laptop' },
   { id: 'ipad', name: 'iPad', icon: 'Tablet' },
@@ -30,16 +31,16 @@ export const PRODUCTS = [
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=90',
         gallery: [
           'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=90',
-          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90',
+          'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=90',
           'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'Natural Titanium',
         hex: '#9e978e',
-        image: 'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90',
+        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90'
+          'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {

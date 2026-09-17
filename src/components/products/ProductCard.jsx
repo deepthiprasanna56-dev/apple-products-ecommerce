@@ -41,8 +41,11 @@ export function ProductCard({
   return (
     <div
       onClick={() => onQuickView(product)}
-      className="group relative h-full flex flex-col justify-between bg-[#161617] rounded-3xl border border-white/10 hover:border-white/30 hover:-translate-y-1.5 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/60 cursor-pointer"
+      className="group relative h-full flex flex-col justify-between bg-[#161617] rounded-3xl border border-white/10 hover:border-[#0071e3]/45 hover:-translate-y-2 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#0071e3]/25 cursor-pointer"
     >
+      {/* Ambient glowing border aura on card hover */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#0071e3]/0 via-[#2997ff]/0 to-[#9933ff]/0 group-hover:from-[#0071e3]/20 group-hover:via-[#2997ff]/20 group-hover:to-[#9933ff]/20 rounded-3xl blur-sm -z-10 transition-all duration-500 pointer-events-none" />
+
       {/* Top Header with Badges and Actions */}
       <div className="p-4 sm:p-5 flex items-center justify-between relative z-10 min-h-[58px]">
         <div className="flex items-center gap-1.5 flex-wrap">
@@ -93,14 +96,14 @@ export function ProductCard({
 
       {/* Visual Image Area with Illuminated Studio Spotlight Backdrop */}
       <div className="relative h-60 sm:h-64 px-6 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#242428] via-[#1c1c20] to-[#141417]">
-        {/* Soft radial studio backlight to make dark devices pop */}
+        {/* Soft radial studio backlight with glow pulse */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute w-44 h-44 rounded-full bg-[#0071e3]/10 blur-2xl pointer-events-none" />
+        <div className="absolute w-48 h-48 rounded-full bg-[#0071e3]/15 group-hover:bg-[#2997ff]/30 blur-2xl pointer-events-none transition-all duration-500" />
 
         <img
           src={activeColor.image}
           alt={`${product.name} - ${activeColor.name}`}
-          className="max-h-52 w-auto max-w-[88%] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl relative z-10"
+          className="max-h-52 w-auto max-w-[88%] object-contain transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1.5 drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] relative z-10"
           loading="lazy"
         />
 

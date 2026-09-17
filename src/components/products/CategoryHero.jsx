@@ -52,7 +52,7 @@ export function CategoryHero({ categoryId, onBackToStore, onOpenCompare }) {
             className="flex items-center gap-2 text-xs font-medium text-[#86868b] hover:text-white transition-colors group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to All Products</span>
+            <span>Back to Home</span>
           </button>
 
           <button

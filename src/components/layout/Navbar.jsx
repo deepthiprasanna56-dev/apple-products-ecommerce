@@ -27,10 +27,7 @@ export function Navbar({
   const handleCategoryClick = (catId) => {
     onSelectCategory(catId)
     setMobileMenuOpen(false)
-    const el = document.getElementById('catalog-section')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -45,7 +42,7 @@ export function Navbar({
         {/* Apple Logo */}
         <button
           onClick={() => {
-            onSelectCategory('all')
+            onSelectCategory('home')
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
           className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity group"
