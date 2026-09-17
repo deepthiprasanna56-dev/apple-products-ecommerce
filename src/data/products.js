@@ -27,36 +27,35 @@ export const PRODUCTS = [
       {
         name: 'Desert Titanium',
         hex: '#bca693',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=90',
+          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90',
+          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'Natural Titanium',
         hex: '#9e978e',
-        image: 'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1592286927505-b0e8f8f8b5a8?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'White Titanium',
         hex: '#f2f1ed',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'Black Titanium',
         hex: '#2e2c2b',
-        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90'
         ]
       }
     ],
@@ -102,26 +101,26 @@ export const PRODUCTS = [
       {
         name: 'Ultramarine',
         hex: '#405697',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Teal',
         hex: '#8eaab1',
-        image: 'https://images.unsplash.com/photo-1574755393849-623942496936?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1574755393849-623942496936?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1574755393849-623942496936?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1574755393849-623942496936?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Pink',
         hex: '#e2a3b0',
-        image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Black',
         hex: '#232528',
-        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -165,20 +164,20 @@ export const PRODUCTS = [
       {
         name: 'Blue',
         hex: '#d2dbe2',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Yellow',
         hex: '#f5e7b2',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Black',
         hex: '#2d3134',
-        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -224,18 +223,18 @@ export const PRODUCTS = [
       {
         name: 'Space Black',
         hex: '#232528',
-        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=90',
+          'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'Silver',
         hex: '#e2e4e5',
-        image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=90'
         ]
       }
     ],
@@ -281,26 +280,14 @@ export const PRODUCTS = [
       {
         name: 'Midnight',
         hex: '#1f242e',
-        image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=90']
       },
       {
         name: 'Starlight',
         hex: '#ede4d8',
-        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Space Gray',
-        hex: '#787a7d',
-        image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Silver',
-        hex: '#e2e4e5',
-        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -344,8 +331,8 @@ export const PRODUCTS = [
       {
         name: 'Silver',
         hex: '#e2e4e5',
-        image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -391,17 +378,17 @@ export const PRODUCTS = [
       {
         name: 'Space Black',
         hex: '#242528',
-        image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=90'
         ]
       },
       {
         name: 'Silver',
         hex: '#e2e4e5',
-        image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=90'
         ]
       }
     ],
@@ -447,33 +434,14 @@ export const PRODUCTS = [
       {
         name: 'Space Gray',
         hex: '#696b6e',
-        image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Blue',
-        hex: '#c0cfdb',
-        image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Purple',
-        hex: '#d1cde0',
-        image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Starlight',
-        hex: '#ede8dd',
-        image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
       { size: '128GB', priceDiff: 0 },
       { size: '256GB', priceDiff: 100 },
-      { size: '512GB', priceDiff: 300 },
-      { size: '1TB', priceDiff: 500 }
+      { size: '512GB', priceDiff: 300 }
     ],
     specs: {
       chip: 'Apple M2 chip with 8-core CPU and 10-core GPU',
@@ -492,6 +460,50 @@ export const PRODUCTS = [
     ],
     inTheBox: ['iPad Air', 'USB-C Charge Cable (1m)', '20W USB-C Power Adapter'],
     appleCarePrice: 119
+  },
+  {
+    id: 'ipad-10th-gen',
+    name: 'iPad (10th Gen)',
+    category: 'ipad',
+    tagline: 'Lovable. Drawable. Magical.',
+    description: 'All-screen design with a 10.9-inch Liquid Retina display and four gorgeous colors. Powered by the fast A14 Bionic chip.',
+    badge: 'Value',
+    featured: false,
+    price: 349,
+    displayPrice: '$349',
+    monthlyPrice: '$29.08/mo. for 12 mo.',
+    tradeInUpTo: '$250',
+    rating: 4.79,
+    reviewsCount: 2840,
+    colors: [
+      {
+        name: 'Silver',
+        hex: '#e2e4e5',
+        image: 'https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&w=800&q=90']
+      }
+    ],
+    storageOptions: [
+      { size: '64GB', priceDiff: 0 },
+      { size: '256GB', priceDiff: 150 }
+    ],
+    specs: {
+      chip: 'A14 Bionic chip with 4-core GPU',
+      display: '10.9" Liquid Retina display with True Tone',
+      camera: 'Landscape 12MP Ultra Wide front camera | 12MP Wide back',
+      battery: 'Up to 10 hours of battery life',
+      finish: 'Durable aluminum enclosure in vivid colors',
+      fastCharge: 'USB-C connector for charging and accessories',
+      os: 'iPadOS 18'
+    },
+    highlights: [
+      'Striking 10.9-inch Liquid Retina display with edge-to-edge screen',
+      'Landscape front camera for natural FaceTime video calling',
+      'Compatible with Apple Pencil (USB-C) and Magic Keyboard Folio',
+      'Touch ID for secure authentication and Apple Pay'
+    ],
+    inTheBox: ['iPad (10th generation)', 'USB-C Charge Cable (1m)', '20W USB-C Power Adapter'],
+    appleCarePrice: 69
   },
 
   // Apple Watch
@@ -513,14 +525,8 @@ export const PRODUCTS = [
       {
         name: 'Black Titanium',
         hex: '#232528',
-        image: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Natural Titanium',
-        hex: '#b8b2a8',
-        image: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -562,20 +568,8 @@ export const PRODUCTS = [
       {
         name: 'Jet Black',
         hex: '#111213',
-        image: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Rose Gold',
-        hex: '#e2b3a9',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Silver',
-        hex: '#e3e5e6',
-        image: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -600,6 +594,50 @@ export const PRODUCTS = [
     inTheBox: ['Apple Watch Series 10', 'Sport Band', 'Apple Watch Magnetic Fast Charger to USB-C Cable (1m)'],
     appleCarePrice: 79
   },
+  {
+    id: 'apple-watch-se',
+    name: 'Apple Watch SE',
+    category: 'watch',
+    tagline: 'Heavy on features. Light on price.',
+    description: 'Essential health, fitness, and connectivity features at an approachable price. Swimproof with Crash Detection.',
+    badge: 'Best Value',
+    featured: false,
+    price: 249,
+    displayPrice: '$249',
+    monthlyPrice: '$20.75/mo. for 12 mo.',
+    tradeInUpTo: '$180',
+    rating: 4.81,
+    reviewsCount: 3910,
+    colors: [
+      {
+        name: 'Midnight',
+        hex: '#1f242e',
+        image: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=90']
+      }
+    ],
+    storageOptions: [
+      { size: '40mm Case', priceDiff: 0 },
+      { size: '44mm Case', priceDiff: 30 }
+    ],
+    specs: {
+      chip: 'S8 SiP with 64-bit dual-core processor',
+      display: 'Retina LTPO OLED display (up to 1000 nits)',
+      camera: 'High & low heart rate notifications | Irregular rhythm alerts',
+      battery: 'Up to 18 hours of all-day battery life',
+      finish: '100% recycled aluminum case with color-matched back',
+      fastCharge: 'Standard magnetic charging to USB-C cable',
+      os: 'watchOS 11'
+    },
+    highlights: [
+      'Stay connected with calls, texts, and notifications on the go',
+      'Track your daily activity with the Enhanced Workout app',
+      'Crash Detection and Fall Detection for peace of mind',
+      'Water resistant 50 meters for swimming'
+    ],
+    inTheBox: ['Apple Watch SE', 'Sport Band', 'Apple Watch Magnetic Charger to USB-C Cable (1m)'],
+    appleCarePrice: 49
+  },
 
   // AirPods
   {
@@ -620,10 +658,9 @@ export const PRODUCTS = [
       {
         name: 'White',
         hex: '#f5f5f7',
-        image: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=1000&q=85',
+        image: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=90',
         gallery: [
-          'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=1000&q=85'
+          'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=90'
         ]
       }
     ],
@@ -666,32 +703,8 @@ export const PRODUCTS = [
       {
         name: 'Midnight',
         hex: '#1f242e',
-        image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Starlight',
-        hex: '#eee8dc',
-        image: 'https://images.unsplash.com/photo-1625245488600-8ed1e7b9b7d3?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1625245488600-8ed1e7b9b7d3?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Blue',
-        hex: '#69889f',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Purple',
-        hex: '#8e829e',
-        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=85']
-      },
-      {
-        name: 'Orange',
-        hex: '#e2886c',
-        image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [
@@ -733,8 +746,8 @@ export const PRODUCTS = [
       {
         name: 'White',
         hex: '#f5f5f7',
-        image: 'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=1000&q=85',
-        gallery: ['https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=1000&q=85']
+        image: 'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=90',
+        gallery: ['https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=90']
       }
     ],
     storageOptions: [

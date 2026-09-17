@@ -91,17 +91,21 @@ export function ProductCard({
         </div>
       </div>
 
-      {/* Visual Image Area with fixed height & containment */}
-      <div className="relative h-60 sm:h-64 px-6 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#18181a] via-[#141416] to-[#101012]">
+      {/* Visual Image Area with Illuminated Studio Spotlight Backdrop */}
+      <div className="relative h-60 sm:h-64 px-6 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#242428] via-[#1c1c20] to-[#141417]">
+        {/* Soft radial studio backlight to make dark devices pop */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute w-44 h-44 rounded-full bg-[#0071e3]/10 blur-2xl pointer-events-none" />
+
         <img
           src={activeColor.image}
           alt={`${product.name} - ${activeColor.name}`}
-          className="max-h-52 w-auto max-w-[85%] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-xl"
+          className="max-h-52 w-auto max-w-[88%] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl relative z-10"
           loading="lazy"
         />
 
         {/* Quick View Hover Overlay Pill */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
           <span className="px-4 py-2 rounded-full bg-white text-black font-semibold text-xs flex items-center gap-1.5 shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
             <Eye className="w-3.5 h-3.5 text-[#0071e3]" /> Quick View
           </span>
