@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Apple Products E-Commerce Website
 
 An ultra-modern, responsive, and visually stunning Apple Products E-Commerce storefront built with **React 19**, **Vite**, **Tailwind CSS v4**, and **Lucide React**. Designed to faithfully reflect Apple's signature design philosophy — frosted glass blur, microblasted titanium textures, fluid micro-interactions, Cupertino typography, and a seamless shopping experience.
@@ -176,3 +177,7 @@ apple-products-ecommerce/
 
 ## 📄 License
 This project is built for demonstration and educational purposes inspired by Apple design language. All Apple product names, trademarks, and imagery belong to Apple Inc.
+=======
+# apple-products-ecommerce
+🍎 Premium Apple Products E-Commerce Website built with React, Vite &amp; Tailwind CSS, featuring product listings, details, wishlist, cart, responsive design, and smooth animations.
+>>>>>>> e3dd6d58ed30baf85f7c81003798d0def2a2347f
