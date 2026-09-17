@@ -1,9 +1,11 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Navbar } from './components/layout/Navbar'
+import { StoreRibbon } from './components/layout/StoreRibbon'
 import { HeroSection } from './components/home/HeroSection'
 import { BentoGrid } from './components/home/BentoGrid'
 import { PerksStrip } from './components/home/PerksStrip'
-import { CategoryNav } from './components/products/CategoryNav'
+import { CategoryShowcaseSection } from './components/home/CategoryShowcaseSection'
+import { CategoryHero } from './components/products/CategoryHero'
 import { FilterBar } from './components/products/FilterBar'
 import { ProductCard } from './components/products/ProductCard'
 import { ProductDetailsModal } from './components/products/ProductDetailsModal'
@@ -208,30 +210,31 @@ export default function App() {
     addToast(`Order ${orderId} confirmed! Thank you!`, 'success')
   }
 
-  // Filtered and Sorted Catalog
-  const filteredProducts = useMemo(() => {
+  // Filtered and Sorted Catalog for Dedicated Category Page
+  const categoryProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      // Category match
       const categoryMatch = activeCategory === 'all' || product.category === activeCategory
-
-      // Search match
       const searchMatch =
         searchQuery.trim() === '' ||
         `${product.name} ${product.category} ${product.tagline} ${product.specs.chip}`
           .toLowerCase()
           .includes(searchQuery.toLowerCase())
-
-      // Price filter match
       const priceMatch = product.price <= maxPrice
-
       return categoryMatch && searchMatch && priceMatch
     }).sort((a, b) => {
       if (sortBy === 'price-low') return a.price - b.price
       if (sortBy === 'price-high') return b.price - a.price
       if (sortBy === 'rating') return b.rating - a.rating
-      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) // featured first
+      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
     })
   }, [activeCategory, searchQuery, maxPrice, sortBy])
+
+  // Products grouped by category for the Home View
+  const iphoneProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'iphone'), [])
+  const macProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'mac'), [])
+  const ipadProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'ipad'), [])
+  const watchProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'watch'), [])
+  const airpodsProducts = useMemo(() => PRODUCTS.filter((p) => p.category === 'airpods'), [])
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0)
   const heroProduct = PRODUCTS.find((p) => p.id === 'iphone-16-pro') || PRODUCTS[0]
@@ -241,7 +244,10 @@ export default function App() {
       {/* Apple Frosted Navbar */}
       <Navbar
         activeCategory={activeCategory}
-        onSelectCategory={setActiveCategory}
+        onSelectCategory={(cat) => {
+          setActiveCategory(cat)
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
         cartCount={cartCount}
         wishlistCount={wishlist.length}
         onOpenCart={() => setIsCartOpen(true)}
@@ -251,110 +257,214 @@ export default function App() {
         compareCount={compareList.length}
       />
 
-      {/* Main Page Body */}
-      <main className="flex-1">
-        {/* Cinematic Hero Section */}
-        <HeroSection
-          heroProduct={heroProduct}
-          onExplore={() => {
-            document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })
-          }}
-          onBuy={handleBuyNow}
-          onWatchFilm={() => setIsVideoOpen(true)}
-        />
-
-        {/* Value Propositions & Delivery Perks */}
-        <PerksStrip />
-
-        {/* Hardware Bento Grid Showcase */}
-        <BentoGrid
-          onSelectProduct={(productId) => {
-            const found = PRODUCTS.find((p) => p.id === productId)
-            if (found) setSelectedProduct(found)
+      {/* Main Content Area */}
+      <main className="flex-1 pt-12">
+        {/* Apple Store Category Ribbon */}
+        <StoreRibbon
+          activeCategory={activeCategory}
+          onSelectCategory={(cat) => {
+            setActiveCategory(cat)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         />
 
-        {/* Complete Ecosystem Product Catalog */}
-        <section id="catalog-section" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#2997ff]">
-                Complete Apple Ecosystem
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mt-1">
-                Explore the lineup.
-              </h2>
+        {/* VIEW MODE 1: ALL PRODUCTS (HOME STOREFRONT) */}
+        {activeCategory === 'all' && (
+          <div>
+            {/* Cinematic Hero Section */}
+            <HeroSection
+              heroProduct={heroProduct}
+              onExplore={() => {
+                const el = document.getElementById('iphone-showcase')
+                if (el) el.scrollIntoView({ behavior: 'smooth' })
+              }}
+              onBuy={handleBuyNow}
+              onWatchFilm={() => setIsVideoOpen(true)}
+            />
+
+            {/* Apple Store Perks Strip */}
+            <PerksStrip />
+
+            {/* Bento Grid Hardware Innovations */}
+            <BentoGrid
+              onSelectProduct={(productId) => {
+                const found = PRODUCTS.find((p) => p.id === productId)
+                if (found) setSelectedProduct(found)
+              }}
+            />
+
+            {/* DEDICATED CATEGORY SHOWCASE SECTIONS */}
+            <div id="iphone-showcase">
+              <CategoryShowcaseSection
+                title="iPhone"
+                subtitle="Explore iPhone 16 Pro, iPhone 16, and iPhone 15. Powered by Apple Intelligence."
+                categoryId="iphone"
+                products={iphoneProducts}
+                onExploreCategory={(cat) => {
+                  setActiveCategory(cat)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onQuickView={(p) => setSelectedProduct(p)}
+                onAddToCart={handleAddToCart}
+                compareList={compareList}
+                onToggleCompare={handleToggleCompare}
+              />
             </div>
-            <p className="text-xs sm:text-sm text-[#86868b] max-w-md">
-              Compare cutting-edge iPhone, Mac, iPad, Apple Watch, and AirPods devices with bespoke finishes and storage configs.
-            </p>
+
+            <div id="mac-showcase">
+              <CategoryShowcaseSection
+                title="Mac"
+                subtitle="MacBook Pro, MacBook Air, and Mac mini. Supercharged with M4 and M3 Apple Silicon."
+                categoryId="mac"
+                products={macProducts}
+                onExploreCategory={(cat) => {
+                  setActiveCategory(cat)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onQuickView={(p) => setSelectedProduct(p)}
+                onAddToCart={handleAddToCart}
+                compareList={compareList}
+                onToggleCompare={handleToggleCompare}
+              />
+            </div>
+
+            <div id="ipad-showcase">
+              <CategoryShowcaseSection
+                title="iPad"
+                subtitle="iPad Pro with breakthrough Tandem OLED and iPad Air. Versatile performance for creators."
+                categoryId="ipad"
+                products={ipadProducts}
+                onExploreCategory={(cat) => {
+                  setActiveCategory(cat)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onQuickView={(p) => setSelectedProduct(p)}
+                onAddToCart={handleAddToCart}
+                compareList={compareList}
+                onToggleCompare={handleToggleCompare}
+              />
+            </div>
+
+            <div id="watch-showcase">
+              <CategoryShowcaseSection
+                title="Apple Watch"
+                subtitle="Apple Watch Ultra 2 and Series 10. Advanced wellness, activity tracking, and emergency features."
+                categoryId="watch"
+                products={watchProducts}
+                onExploreCategory={(cat) => {
+                  setActiveCategory(cat)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onQuickView={(p) => setSelectedProduct(p)}
+                onAddToCart={handleAddToCart}
+                compareList={compareList}
+                onToggleCompare={handleToggleCompare}
+              />
+            </div>
+
+            <div id="airpods-showcase">
+              <CategoryShowcaseSection
+                title="AirPods"
+                subtitle="AirPods Pro 2, AirPods Max, and AirPods 4. Industry-leading Active Noise Cancellation."
+                categoryId="airpods"
+                products={airpodsProducts}
+                onExploreCategory={(cat) => {
+                  setActiveCategory(cat)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                wishlist={wishlist}
+                onToggleWishlist={handleToggleWishlist}
+                onQuickView={(p) => setSelectedProduct(p)}
+                onAddToCart={handleAddToCart}
+                compareList={compareList}
+                onToggleCompare={handleToggleCompare}
+              />
+            </div>
           </div>
+        )}
 
-          {/* Category Navigation Pills */}
-          <CategoryNav
-            activeCategory={activeCategory}
-            onSelectCategory={(catId) => {
-              setActiveCategory(catId)
-              setSearchQuery('')
-            }}
-          />
+        {/* VIEW MODE 2: DEDICATED CATEGORY VIEW (IPHONE / MAC / IPAD / WATCH / AIRPODS) */}
+        {activeCategory !== 'all' && (
+          <div className="animate-in fade-in duration-300">
+            {/* Category Banner Hero */}
+            <CategoryHero
+              categoryId={activeCategory}
+              onBackToStore={() => {
+                setActiveCategory('all')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              onOpenCompare={() => setIsCompareOpen(true)}
+            />
 
-          {/* Filter & Sort Bar */}
-          <FilterBar
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-            maxPrice={maxPrice}
-            onMaxPriceChange={setMaxPrice}
-            totalResults={filteredProducts.length}
-            onResetFilters={() => {
-              setSearchQuery('')
-              setMaxPrice(2000)
-              setSortBy('featured')
-              setActiveCategory('all')
-            }}
-          />
-
-          {/* Product Grid */}
-          {filteredProducts.length === 0 ? (
-            <div className="py-20 text-center bg-[#161617]/50 rounded-3xl border border-white/10 p-8">
-              <h3 className="text-lg font-semibold text-white">No Apple devices found.</h3>
-              <p className="text-xs text-[#86868b] mt-1">
-                Try adjusting your price filter or searching for another model.
-              </p>
-              <button
-                onClick={() => {
+            {/* Category Listing Grid Container */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+              {/* Filter and Sort Toolbar */}
+              <FilterBar
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
+                maxPrice={maxPrice}
+                onMaxPriceChange={setMaxPrice}
+                totalResults={categoryProducts.length}
+                onResetFilters={() => {
                   setSearchQuery('')
                   setMaxPrice(2000)
-                  setActiveCategory('all')
+                  setSortBy('featured')
                 }}
-                className="mt-4 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs text-white transition-colors"
-              >
-                Reset All Filters
-              </button>
+              />
+
+              {/* Products Grid */}
+              {categoryProducts.length === 0 ? (
+                <div className="py-20 text-center bg-[#161617]/50 rounded-3xl border border-white/10 p-8">
+                  <h3 className="text-lg font-semibold text-white">No models match your filters.</h3>
+                  <p className="text-xs text-[#86868b] mt-1">
+                    Try adjusting the price slider or search query.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery('')
+                      setMaxPrice(2000)
+                    }}
+                    className="mt-4 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs text-white transition-colors"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+                  {categoryProducts.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      isWishlisted={wishlist.includes(product.id)}
+                      onToggleWishlist={handleToggleWishlist}
+                      onQuickView={(p) => setSelectedProduct(p)}
+                      onAddToCart={handleAddToCart}
+                      isInCompare={compareList.some((p) => p.id === product.id)}
+                      onToggleCompare={handleToggleCompare}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isWishlisted={wishlist.includes(product.id)}
-                  onToggleWishlist={handleToggleWishlist}
-                  onQuickView={(p) => setSelectedProduct(p)}
-                  onAddToCart={handleAddToCart}
-                  isInCompare={compareList.some((p) => p.id === product.id)}
-                  onToggleCompare={handleToggleCompare}
-                />
-              ))}
-            </div>
-          )}
-        </section>
+          </div>
+        )}
       </main>
 
       {/* Directory Footer */}
-      <Footer onSelectCategory={setActiveCategory} />
+      <Footer onSelectCategory={(cat) => {
+        setActiveCategory(cat)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }} />
 
       {/* MODALS AND DRAWERS */}
 

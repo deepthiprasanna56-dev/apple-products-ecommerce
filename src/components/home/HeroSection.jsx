@@ -1,111 +1,182 @@
-import { Play, Sparkles, ChevronRight, Cpu, ShieldCheck, Camera } from 'lucide-react'
+import { useState } from 'react'
+import { Play, Sparkles, ChevronRight, Cpu, ShieldCheck, Camera, Layers, Zap } from 'lucide-react'
 
 export function HeroSection({ heroProduct, onExplore, onBuy, onWatchFilm }) {
-  if (!heroProduct) return null
+  const [activeTab, setActiveTab] = useState(0)
+
+  const heroSlides = [
+    {
+      badge: 'Built for Apple Intelligence',
+      title: 'iPhone 16 Pro',
+      subtitle: 'Titanium. So strong. So light. So Pro.',
+      desc: 'Powered by the all-new A18 Pro chip. Groundbreaking Camera Control with 48MP Fusion and 4K 120 fps Dolby Vision.',
+      price: '$999',
+      monthly: '$41.62/mo. for 24 mo.',
+      image: heroProduct?.colors[0]?.image || 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=85',
+      colorName: 'Desert Titanium',
+      highlights: [
+        { icon: Cpu, label: 'A18 Pro Chip', sub: 'Industry-leading silicon' },
+        { icon: Camera, label: '48MP Fusion', sub: 'Camera Control button' },
+        { icon: ShieldCheck, label: 'Grade 5 Titanium', sub: 'Lightest Pro models ever' }
+      ]
+    },
+    {
+      badge: 'M4 Series Innovation',
+      title: 'MacBook Pro',
+      subtitle: 'Mind-blowing. Head-turning.',
+      desc: 'Supercharged by M4, M4 Pro, and M4 Max. Up to 24 hours of battery life and Liquid Retina XDR display with up to 1,600 nits.',
+      price: '$1,599',
+      monthly: '$133.25/mo. for 12 mo.',
+      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1000&q=85',
+      colorName: 'Space Black',
+      highlights: [
+        { icon: Zap, label: 'M4 Max Silicon', sub: 'Up to 16-core CPU' },
+        { icon: Layers, label: 'Liquid Retina XDR', sub: '1,600 nits peak' },
+        { icon: ShieldCheck, label: '24-Hour Battery', sub: 'Longest Mac battery ever' }
+      ]
+    },
+    {
+      badge: 'Adventure Re-imagined',
+      title: 'Apple Watch Ultra 2',
+      subtitle: 'Engineered for the extreme.',
+      desc: 'The most capable Apple Watch ever, now in stunning satin Black Titanium. Precision dual-frequency GPS and 3,000-nit display.',
+      price: '$799',
+      monthly: '$66.58/mo. for 12 mo.',
+      image: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=1000&q=85',
+      colorName: 'Black Titanium',
+      highlights: [
+        { icon: Zap, label: '3,000 Nits', sub: 'Brightest Apple display' },
+        { icon: ShieldCheck, label: 'Titanium Case', sub: '100m water resistance' },
+        { icon: Cpu, label: 'S9 SiP', sub: 'Double tap gesture' }
+      ]
+    }
+  ]
+
+  const current = heroSlides[activeTab]
 
   return (
-    <section className="relative overflow-hidden bg-[#000000] text-white pt-24 pb-16 lg:pt-32 lg:pb-24">
-      {/* Background ambient lighting glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] sm:w-[750px] h-[380px] bg-gradient-to-tr from-[#bca693]/20 via-[#405697]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -top-10 left-1/4 w-[300px] h-[300px] bg-[#2997ff]/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative overflow-hidden bg-[#000000] text-white pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-white/10">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[450px] bg-gradient-to-tr from-[#bca693]/15 via-[#0071e3]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center text-center">
-          
+        {/* Device Switcher Pills */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          {heroSlides.map((slide, idx) => (
+            <button
+              key={slide.title}
+              onClick={() => setActiveTab(idx)}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                activeTab === idx
+                  ? 'bg-white text-black shadow-lg shadow-white/10 scale-105'
+                  : 'bg-white/5 text-[#86868b] hover:text-white hover:bg-white/10 border border-white/5'
+              }`}
+            >
+              {slide.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Hero Content Header */}
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           {/* Apple Intelligence Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-6 hover:bg-white/15 transition-all">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-5 hover:bg-white/15 transition-all">
             <Sparkles className="w-3.5 h-3.5 text-[#e5a97d] animate-pulse" />
-            <span className="text-xs font-medium tracking-wide text-neutral-200">
-              Hello, Apple Intelligence.
+            <span className="text-xs font-semibold tracking-wide text-neutral-200">
+              {current.badge}
             </span>
           </div>
 
-          {/* Hero Main Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-[#f5f5f7] max-w-4xl leading-[1.05]">
-            iPhone 16 Pro
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-[#f5f5f7] leading-[1.05]">
+            {current.title}
           </h1>
 
-          <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#e5a97d] via-[#e2e4e5] to-[#9e978e] max-w-2xl">
-            Titanium. So strong. So light. So Pro.
+          <p className="mt-3 text-xl sm:text-2xl md:text-3xl font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#e5a97d] via-[#e2e4e5] to-[#2997ff]">
+            {current.subtitle}
           </p>
 
-          <p className="mt-3 text-sm sm:text-base text-[#86868b] max-w-xl">
-            Powered by the all-new A18 Pro chip. Groundbreaking camera control with 48MP Fusion and 4K 120 fps Dolby Vision.
+          <p className="mt-3 text-sm sm:text-base text-[#86868b] max-w-xl leading-relaxed">
+            {current.desc}
           </p>
 
-          {/* Action CTAs */}
+          {/* Pricing Subtitle */}
+          <div className="mt-4 text-xs sm:text-sm text-[#a1a1a6] flex items-center gap-2">
+            <span>From <strong className="text-white font-semibold">{current.price}</strong></span>
+            <span>&middot;</span>
+            <span>or <strong className="text-white font-semibold">{current.monthly}</strong></span>
+          </div>
+
+          {/* CTAs */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onBuy(heroProduct)}
-              className="px-6 py-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium text-sm transition-all shadow-lg shadow-[#0071e3]/30 hover:scale-105 active:scale-95"
+              className="px-7 py-3.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-sm transition-all shadow-lg shadow-[#0071e3]/30 hover:scale-105 active:scale-95"
             >
-              Buy Now &middot; From $999
+              Buy Now
             </button>
             <button
               onClick={onExplore}
-              className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-[#f5f5f7] border border-white/20 font-medium text-sm transition-all flex items-center gap-1.5 hover:scale-105"
+              className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-[#f5f5f7] border border-white/20 font-medium text-sm transition-all flex items-center gap-1.5 hover:scale-105"
             >
-              <span>Explore Ecosystem</span>
+              <span>Explore Collection</span>
               <ChevronRight className="w-4 h-4 text-[#2997ff]" />
             </button>
             <button
               onClick={onWatchFilm}
-              className="px-5 py-3 rounded-full text-xs sm:text-sm text-[#86868b] hover:text-white transition-colors flex items-center gap-2 group"
+              className="px-5 py-3.5 rounded-full text-xs sm:text-sm text-[#86868b] hover:text-white transition-colors flex items-center gap-2 group"
             >
               <div className="w-7 h-7 rounded-full bg-white/10 group-hover:bg-[#2997ff] flex items-center justify-center transition-colors">
                 <Play className="w-3 h-3 text-white fill-white ml-0.5" />
               </div>
-              <span>Watch the keynote</span>
+              <span>Watch the film</span>
             </button>
           </div>
-
-          {/* Hero Visual Image Render */}
-          <div className="mt-12 sm:mt-16 relative w-full max-w-4xl mx-auto group">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/80 border border-white/10 bg-[#0c0c0e]">
-              <img
-                src={heroProduct.colors[0].image}
-                alt={heroProduct.name}
-                className="w-full max-h-[520px] object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-black/20" />
-
-              {/* Interactive badge highlights floating over hero */}
-              <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#e5a97d]">
-                    <Cpu className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-[#86868b]">Fastest in a smartphone</div>
-                    <div className="text-sm font-semibold text-white">Apple A18 Pro Chip</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#2997ff]">
-                    <Camera className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-[#86868b]">Cinematic Mastery</div>
-                    <div className="text-sm font-semibold text-white">48MP Fusion &amp; 5x Telephoto</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#34c759]">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-[#86868b]">Grade 5 Metal</div>
-                    <div className="text-sm font-semibold text-white">Microblasted Titanium</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        {/* Hero Visual Studio Stage */}
+        <div className="mt-12 sm:mt-16 max-w-4xl mx-auto">
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-b from-[#161618] via-[#101012] to-[#0a0a0c] shadow-2xl shadow-black/80">
+            
+            {/* Color Tag Badge */}
+            <div className="absolute top-5 left-5 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs text-[#a1a1a6]">
+              Finish: <strong className="text-white">{current.colorName}</strong>
+            </div>
+
+            {/* Clean Centered Image Stage */}
+            <div className="h-72 sm:h-[420px] w-full flex items-center justify-center p-6 relative">
+              <img
+                src={current.image}
+                alt={current.title}
+                className="max-h-full max-w-full object-contain transition-all duration-700 hover:scale-105 drop-shadow-2xl"
+              />
+            </div>
+
+            {/* Highlights Grid Aligned at Bottom */}
+            <div className="border-t border-white/10 bg-black/40 backdrop-blur-xl p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {current.highlights.map((item, idx) => {
+                const Icon = item.icon
+                return (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#2997ff] shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-semibold text-white tracking-tight">
+                        {item.label}
+                      </h4>
+                      <p className="text-[11px] text-[#86868b]">
+                        {item.sub}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   )
