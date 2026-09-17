@@ -404,8 +404,8 @@ export default function App() {
               onOpenCompare={() => setIsCompareOpen(true)}
             />
 
-            {/* Category Listing Grid Container */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            {/* Category Listing Grid Container - Expanded to remove side gaps */}
+            <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12 py-10">
               {/* Filter and Sort Toolbar */}
               <FilterBar
                 searchQuery={searchQuery}

@@ -59,7 +59,7 @@ export function HeroSection({ heroProduct, onExplore, onBuy, onWatchFilm }) {
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[350px] bg-gradient-to-tr from-[#bca693]/15 via-[#0071e3]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         {/* Device Switcher Pills */}
         <div className="flex items-center justify-center gap-2 mb-6">
           {heroSlides.map((slide, idx) => (
@@ -134,8 +134,8 @@ export function HeroSection({ heroProduct, onExplore, onBuy, onWatchFilm }) {
           </div>
         </div>
 
-        {/* Hero Visual Studio Stage - Compact and Perfectly Proportioned */}
-        <div className="mt-8 sm:mt-10 max-w-4xl mx-auto">
+        {/* Hero Visual Studio Stage - Expanded width to remove side gaps */}
+        <div className="mt-8 sm:mt-10 w-full max-w-5xl lg:max-w-6xl mx-auto">
           <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-b from-[#18181b] via-[#121214] to-[#0a0a0c] shadow-2xl shadow-black/80">
             
             {/* Color Tag Badge */}

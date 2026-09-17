@@ -21,21 +21,20 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Custom Apple scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Hide scrollbars globally across all browsers while preserving smooth scrolling */
+* {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
 }
 
-::-webkit-scrollbar-track {
-  background: #000000;
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #333336;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555558;
+html, body {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  overflow-x: hidden;
 }

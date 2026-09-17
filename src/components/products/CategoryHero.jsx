@@ -44,7 +44,7 @@ export function CategoryHero({ categoryId, onBackToStore, onOpenCompare }) {
 
   return (
     <section className={`relative overflow-hidden bg-gradient-to-b ${meta.bannerColor} text-white pt-24 pb-12 border-b border-white/10`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         {/* Breadcrumbs & Compare Link */}
         <div className="flex items-center justify-between mb-6">
           <button

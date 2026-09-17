@@ -52,7 +52,7 @@ export function Footer({ onSelectCategory }) {
 
   return (
     <footer className="bg-[#161617] text-[#86868b] text-xs pt-12 pb-16 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
         {/* Footnote Disclaimers */}
         <div className="space-y-2 border-b border-white/10 pb-6 text-[11px] leading-relaxed">
           <p>

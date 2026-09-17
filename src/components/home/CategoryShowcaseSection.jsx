@@ -18,7 +18,7 @@ export function CategoryShowcaseSection({
 
   return (
     <section className="py-10 sm:py-12 border-b border-white/10 last:border-b-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
           <div>

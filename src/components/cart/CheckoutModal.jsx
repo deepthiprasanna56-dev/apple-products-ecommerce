@@ -8,6 +8,7 @@ import {
   PackageCheck,
   Sparkles
 } from 'lucide-react'
+import { ConfettiBlast } from '../common/ConfettiBlast'
 
 export function CheckoutModal({
   isOpen,
@@ -304,6 +305,7 @@ export function CheckoutModal({
         {/* STEP 3: Order Confirmation */}
         {step === 3 && (
           <div className="text-center py-6">
+            <ConfettiBlast />
             <div className="w-16 h-16 rounded-3xl bg-[#34c759]/20 text-[#34c759] border border-[#34c759]/30 flex items-center justify-center mx-auto mb-4 animate-bounce">
               <PackageCheck className="w-8 h-8" />
             </div>

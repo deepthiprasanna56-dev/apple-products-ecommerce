@@ -41,7 +41,7 @@ export function Navbar({
           : 'bg-[#161617]/95 backdrop-blur-md border-b border-white/5 py-3.5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Apple Logo */}
         <button
           onClick={() => {
